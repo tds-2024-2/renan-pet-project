@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "editorconfig.editorconfig", 
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-boot-dev-pack"
+    ],
+    "unwantedRecommendations": [
+        "github.copilot"
+    ]
+}

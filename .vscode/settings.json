@@ -1,0 +1,7 @@
+{
+  "editor.lineNumbers": "on",
+  "editor.rulers": [100],
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnPaste": true,
+  "java.compile.nullAnalysis.mode": "automatic"
+}
