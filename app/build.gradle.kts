@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    jacoco
+    id("com.diffplug.spotless") version "6.25.0"
 }
 
 repositories {
@@ -33,4 +35,46 @@ java {
 application {
     // Define the main class for the application.
     mainClass = "org.example.App"
+}
+
+//test
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
+}
+
+spotless {
+  java {
+    // Use the default importOrder configuration
+    //importOrder()
+    // optional: you can specify import groups directly
+    // note: you can use an empty string for all the imports you didn't specify explicitly, '|' to join group without blank line, and '\\#` prefix for static imports
+    //importOrder('java|javax', 'com.acme', '', '\\#com.acme', '\\#')
+    // optional: instead of specifying import groups directly you can specify a config file
+    // export config file: https://github.com/diffplug/spotless/blob/main/ECLIPSE_SCREENSHOTS.md#creating-spotlessimportorder
+    //importOrderFile('eclipse-import-order.txt') // import order file as exported from eclipse
+
+    removeUnusedImports()
+
+    // Cleanthat will refactor your code, but it may break your style: apply it before your formatter
+    //cleanthat()          // has its own section below
+
+    // Choose one of these formatters.
+    googleJavaFormat()   // has its own section below
+    //eclipse()            // has its own section below
+    //prettier()           // has its own section below
+    //clangFormat()        // has its own section below
+
+    //formatAnnotations()  // fixes formatting of type annotations, see below
+
+    //licenseHeaderFile ('/header.txt')
+  }
 }

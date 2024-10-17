@@ -3,5 +3,6 @@
   "editor.rulers": [100],
   "files.autoSave": "onFocusChange",
   "editor.formatOnPaste": true,
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }
